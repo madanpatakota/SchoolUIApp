@@ -1,0 +1,66 @@
+<div class="card border-0 shadow-sm mb-4">
+  <div class="card-body p-4">
+    <h2 class="fw-bold mb-2">Contact Us</h2>
+    <p class="text-muted mb-0">
+      Have a question or feature request? Send us a note and we’ll get back soon.
+    </p>
+  </div>
+</div>
+
+<div class="row g-3">
+  <div class="col-lg-7">
+    <div class="card h-100">
+      <div class="card-body">
+        <form #f="ngForm" (ngSubmit)="submit(f)" novalidate>
+          <div class="mb-3">
+            <label class="form-label">Your Name</label>
+            <input class="form-control" name="name" [(ngModel)]="model.name" required minlength="2" />
+            <div class="text-danger small" *ngIf="f.submitted && (!model.name || model.name.length < 2)">
+              Name is required (min 2 characters).
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input class="form-control" name="email" [(ngModel)]="model.email" required email />
+            <div class="text-danger small" *ngIf="f.submitted && (!model.email || f.controls['email']?.invalid)">
+              Valid email is required.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Message</label>
+            <textarea class="form-control" name="message" rows="5" [(ngModel)]="model.message" required></textarea>
+            <div class="text-danger small" *ngIf="f.submitted && !model.message">
+              Message is required.
+            </div>
+          </div>
+
+          <div class="d-flex gap-2">
+            <button class="btn btn-primary" [disabled]="submitted">Send</button>
+            <span *ngIf="submitted" class="text-success align-self-center">Sending…</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-5">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="fw-semibold mb-2">Reach us</h5>
+        <p class="text-muted mb-2">
+          Email: <a href="mailto:support@schoolappui.local">support@schoolappui.local</a>
+        </p>
+        <p class="text-muted mb-3">Phone: +91 80-1234-5678</p>
+
+        <h6 class="fw-semibold">Location</h6>
+        <p class="text-muted">Bengaluru, India</p>
+
+        <div class="ratio ratio-16x9 rounded border bg-light d-flex align-items-center justify-content-center">
+          <span class="text-muted">Map placeholder</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+.app-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .75rem 1rem;
+  border-bottom: 1px solid #e9ecef;
+  background: #fff; /* no blue background */
+}
+
+.brand {
+  font-weight: 700;
+  text-decoration: none;
+  color: #212529;
+}
+
+.menu {
+  margin: 0 0 0 auto;           /* push menu to right */
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: .5rem;
+}
+
+.menu a {
+  display: block;
+  padding: .5rem .75rem;
+  text-decoration: none;
+  color: #495057;
+  border-radius: .5rem;
+  transition: background-color .15s ease, color .15s ease;
+}
+
+.menu a:hover {
+  background: #f1f3f5;          /* highlight on hover */
+  color: #212529;
+}
+
+.menu a.active {
+  background: #e9ecef;          /* subtle active state */
+  color: #212529;
+  font-weight: 600;
+}

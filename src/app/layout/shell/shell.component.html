@@ -1,11 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand px-3" routerLink="/">SchoolAppUI</a>
-  <div class="navbar-nav">
-    <a class="nav-link" routerLink="/dashboard">Dashboard</a>
-    <a class="nav-link" routerLink="/students">Students</a>
-    <a class="nav-link" routerLink="/teachers">Teachers</a>
-  </div>
+<nav class="app-nav">
+  <a class="brand" routerLink="/">SchoolAppUI</a>
+
+  <ul class="menu">
+    <li><a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+    <li><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
+    <li><a routerLink="/students" routerLinkActive="active">Students</a></li>
+    <li><a routerLink="/teachers" routerLinkActive="active">Teachers</a></li>
+    <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+    <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+  </ul>
 </nav>
+
 <div class="container py-3">
   <router-outlet></router-outlet>
 </div>

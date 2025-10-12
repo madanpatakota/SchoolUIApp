@@ -24,5 +24,6 @@
     { "id": 2, "name": "9-B",  "section": "B", "room": "105", "capacity": 32, "teacherId": 2, "subject": "Science" },
     { "id": 3, "name": "8-C",  "section": "C", "room": "307", "capacity": 30, "teacherId": 3, "subject": "English" },
     { "id": 4, "name": "7-A",  "section": "A", "room": "109", "capacity": 28, "teacherId": 2, "subject": "History" }
-  ]
+  ],
+  "messages": []
 }

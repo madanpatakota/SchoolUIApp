@@ -1,12 +1,29 @@
 // src/app/app-routing.module.ts
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
-import { AuthGuard } from './core/guards/auth.guard';
+
 import { ShellComponent } from './layout/shell/shell.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+  // Default -> Home
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
 
+  // ----- Public pages (no guard) -----
+  {
+    path: '',
+    component: ShellComponent,
+    children: [
+      // Lazy-load InfoModule which provides /home, /about, /contact
+      {
+        path: '',
+        loadChildren: () =>
+          import('./features/info/info.module').then(m => m.InfoModule)
+      }
+    ]
+  },
+
+  // ----- Auth-protected app features -----
   {
     path: '',
     component: ShellComponent,
@@ -30,25 +47,29 @@ const routes: Routes = [
         loadChildren: () =>
           import('./features/teachers/teachers.module').then(m => m.TeachersModule)
       },
-      { path: 'classes', loadChildren: () => import('./features/classes/classes.module').then(m => m.ClassesModule) },
-
-      // add more feature routes here…
+      {
+        path: 'classes',
+        title: 'Classes',
+        loadChildren: () =>
+          import('./features/classes/classes.module').then(m => m.ClassesModule)
+      }
     ]
   },
 
+  // Auth (login flow)
   {
     path: 'auth',
     loadChildren: () =>
       import('./features/auth/auth.module').then(m => m.AuthModule)
   },
-  { path: 'classes', loadChildren: () => import('./features/classes/classes.module').then(m => m.ClassesModule) },
 
-  { path: '**', redirectTo: 'dashboard' }
+  // Fallback
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules, // optional: preloads lazy modules after load
+    preloadingStrategy: PreloadAllModules,
     scrollPositionRestoration: 'enabled',
     anchorScrolling: 'enabled'
   })],

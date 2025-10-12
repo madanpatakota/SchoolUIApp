@@ -1,0 +1,112 @@
+
+<!-- Hero -->
+<div class="card border-0 shadow-sm mb-4">
+  <div class="card-body p-4 p-md-5">
+    <h1 class="fw-bold mb-2">Welcome to <span class="text-primary">SchoolAppUI</span></h1>
+    <p class="lead text-muted mb-3">
+      A lightweight, real-world Angular app to manage students, teachers, and classes—built with best practices.
+    </p>
+    <div class="d-flex gap-2 flex-wrap">
+      <a routerLink="/dashboard" class="btn btn-primary">Go to Dashboard</a>
+      <a routerLink="/students" class="btn btn-outline-primary">Manage Students</a>
+      <a routerLink="/teachers" class="btn btn-outline-primary">Manage Teachers</a>
+      <a routerLink="/classes" class="btn btn-outline-primary">Manage Classes</a>
+    </div>
+  </div>
+</div>
+
+<!-- Highlights -->
+<div class="row g-3 mb-4">
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="fw-semibold">Fast & Modular</h5>
+        <p class="text-muted mb-0">Lazy-loaded features, shared utilities, and a clean folder layout keep the app fast and maintainable.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="fw-semibold">Forms that Scale</h5>
+        <p class="text-muted mb-0">Template-driven for simple flows (login), Reactive Forms for robust CRUD with validation.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="fw-semibold">Mock API Ready</h5>
+        <p class="text-muted mb-0">Powered by <code>json-server</code>, so you can iterate quickly—no backend required.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Quick Links -->
+<div class="card mb-4">
+  <div class="card-header">
+    <h5 class="mb-0">Quick Links</h5>
+  </div>
+  <div class="card-body">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="p-3 rounded border h-100">
+          <h6 class="fw-semibold mb-1">Add a Student</h6>
+          <p class="text-muted mb-2">Create a new record with validations.</p>
+          <a routerLink="/students/create" class="btn btn-sm btn-outline-primary">Create Student</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-3 rounded border h-100">
+          <h6 class="fw-semibold mb-1">Add a Teacher</h6>
+          <p class="text-muted mb-2">Keep staff info tidy and current.</p>
+          <a routerLink="/teachers/create" class="btn btn-sm btn-outline-primary">Create Teacher</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-3 rounded border h-100">
+          <h6 class="fw-semibold mb-1">Create a Class</h6>
+          <p class="text-muted mb-2">Use the offcanvas editor to add sections fast.</p>
+          <a routerLink="/classes" class="btn btn-sm btn-outline-primary">Open Classes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ (Accordion) -->
+<div class="card">
+  <div class="card-header">
+    <h5 class="mb-0">FAQ</h5>
+  </div>
+  <div class="card-body">
+    <div class="accordion" id="homeFaq">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q1">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1">
+            How do I run the app?
+          </button>
+        </h2>
+        <div id="a1" class="accordion-collapse collapse show" data-bs-parent="#homeFaq">
+          <div class="accordion-body">
+            Start the Angular dev server and the mock API:
+            <code>npm run dev</code>. Angular on <code>4200</code>, API on <code>3000</code>.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q2">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2">
+            Where is the data stored?
+          </button>
+        </h2>
+        <div id="a2" class="accordion-collapse collapse" data-bs-parent="#homeFaq">
+          <div class="accordion-body">
+            All data is served by <code>json-server</code> from <code>json-server/db.json</code>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
