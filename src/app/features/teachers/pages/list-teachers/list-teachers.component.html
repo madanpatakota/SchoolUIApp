@@ -1,1 +1,166 @@
-<p>list-teachers works!</p>
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    <h5 class="mb-0">Teachers</h5>
+    <div class="d-flex gap-2">
+      <input class="form-control form-control-sm" style="width:260px"
+             placeholder="Search name / subject / phone / email"
+             [(ngModel)]="q">
+      <a class="btn btn-sm btn-primary" routerLink="/teachers/create">+ Add</a>
+    </div>
+  </div>
+
+  <ng-container *ngIf="!loading; else loadingTpl">
+    <ng-container *ngIf="filtered().length; else emptyTpl">
+      <div class="table-responsive">
+        <table class="table align-middle mb-0">
+          <thead>
+            <tr>
+              <th style="width:80px;">ID</th>
+              <th>Name</th>
+              <th>Subject</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th style="width:220px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let t of filtered()">
+              <td>{{ t.id }}</td>
+              <td>{{ t.name }}</td>
+              <td><span class="badge text-bg-light">{{ t.subject }}</span></td>
+              <td>{{ t.phone }}</td>
+              <td>{{ t.email || '—' }}</td>
+              <td>
+                <div class="btn-group btn-group-sm">
+                  <button class="btn btn-outline-primary" (click)="openDetails(t)">View</button>
+                  <button class="btn btn-outline-secondary" (click)="openEdit(t)">Edit</button>
+                  <button class="btn btn-outline-danger" (click)="askDelete(t.id)">Delete</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-container>
+
+    <ng-template #emptyTpl>
+      <div class="p-4 text-center text-muted">No teachers found.</div>
+    </ng-template>
+  </ng-container>
+
+  <ng-template #loadingTpl>
+    <div class="p-4 text-center">Loading…</div>
+  </ng-template>
+</div>
+
+<!-- ===== View Details Modal ===== -->
+<div class="modal fade" id="teacherDetailsModal" tabindex="-1" aria-labelledby="teacherDetailsTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="teacherDetailsTitle" class="modal-title">
+          Teacher Details <small class="text-muted" *ngIf="selected">#{{ selected.id }}</small>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body" *ngIf="selected; else noSel">
+        <div class="mb-2"><strong>Name:</strong> {{ selected.name }}</div>
+        <div class="mb-2"><strong>Subject:</strong> {{ selected.subject }}</div>
+        <div class="mb-2"><strong>Phone:</strong> {{ selected.phone }}</div>
+        <div class="mb-2"><strong>Email:</strong> {{ selected.email || '—' }}</div>
+        <div class="mb-2"><strong>Join Date:</strong> {{ selected.joinDate || '—' }}</div>
+      </div>
+      <ng-template #noSel>
+        <div class="modal-body text-muted">No teacher selected.</div>
+      </ng-template>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button *ngIf="selected" class="btn btn-primary" (click)="openEdit(selected)" data-bs-dismiss="modal">
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Edit Teacher Modal (Reactive Form) ===== -->
+<div class="modal fade" id="editTeacherModal" tabindex="-1" aria-labelledby="editTeacherTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="editTeacherTitle" class="modal-title">Edit Teacher <small *ngIf="editingId" class="text-muted">#{{ editingId }}</small></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" [disabled]="submitting"></button>
+      </div>
+
+      <form [formGroup]="editForm" (ngSubmit)="saveEdit()" novalidate>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Name</label>
+              <input class="form-control" formControlName="name">
+              <div class="text-danger small" *ngIf="f.name.touched && f.name.invalid">Name is required.</div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Subject</label>
+              <input class="form-control" formControlName="subject">
+              <div class="text-danger small" *ngIf="f.subject.touched && f.subject.invalid">Subject is required.</div>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">Phone</label>
+              <input class="form-control" formControlName="phone" placeholder="10 digits">
+              <div class="text-danger small" *ngIf="f.phone.touched && f.phone.invalid">
+                Enter a valid 10-digit phone.
+              </div>
+            </div>
+
+            <div class="col-md-5">
+              <label class="form-label">Email</label>
+              <input class="form-control" formControlName="email" placeholder="optional">
+              <div class="text-danger small" *ngIf="f.email.touched && f.email.invalid">
+                Enter a valid email.
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label class="form-label">Join Date</label>
+              <input type="date" class="form-control" formControlName="joinDate">
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" type="button" data-bs-dismiss="modal" [disabled]="submitting">Cancel</button>
+          <button class="btn btn-primary" [disabled]="submitting || editForm.invalid">
+            <span *ngIf="!submitting">Update</span>
+            <span *ngIf="submitting">Saving…</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Confirm Delete Modal ===== -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteTitle" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="confirmDeleteTitle" class="modal-title text-danger">Confirm Delete</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        Are you sure you want to delete this teacher?
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-danger" (click)="confirmDelete()" [disabled]="!toDeleteId">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

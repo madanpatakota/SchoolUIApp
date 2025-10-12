@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    <h5 class="mb-0">Add Teacher</h5>
+    <a class="btn btn-sm btn-outline-secondary" routerLink="/teachers">Back</a>
+  </div>
+
+  <div class="card-body">
+    <form [formGroup]="form" (ngSubmit)="save()" novalidate>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Name</label>
+          <input class="form-control" formControlName="name">
+          <div class="text-danger small" *ngIf="f.name.touched && f.name.invalid">Name is required.</div>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Subject</label>
+          <input class="form-control" formControlName="subject">
+          <div class="text-danger small" *ngIf="f.subject.touched && f.subject.invalid">Subject is required.</div>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Phone</label>
+          <input class="form-control" formControlName="phone" placeholder="10 digits">
+          <div class="text-danger small" *ngIf="f.phone.touched && f.phone.invalid">
+            Enter a valid 10-digit phone.
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <label class="form-label">Email</label>
+          <input class="form-control" formControlName="email" placeholder="optional">
+          <div class="text-danger small" *ngIf="f.email.touched && f.email.invalid">
+            Enter a valid email.
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <label class="form-label">Join Date</label>
+          <input type="date" class="form-control" formControlName="joinDate">
+        </div>
+      </div>
+
+      <div class="mt-3 d-flex gap-2">
+        <button class="btn btn-primary" [disabled]="submitting || form.invalid">Save</button>
+        <a class="btn btn-outline-secondary" routerLink="/teachers">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

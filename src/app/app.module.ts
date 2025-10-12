@@ -9,6 +9,7 @@ import { LoginComponent } from './features/auth/login/login.component';
 import { DashboardComponent } from './features/dashboard/dashboard/dashboard.component';
 import { ListStudentsComponent } from './features/students/pages/list-students/list-students.component';
 import { CreateStudentComponent } from './features/students/pages/create-student/create-student.component';
+import { ClassesComponent } from './features/classes/classes.component';
 
 @NgModule({
   declarations: [
