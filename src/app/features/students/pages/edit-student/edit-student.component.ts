@@ -9,9 +9,9 @@ import { Student } from '../../../../models/student.model';
   templateUrl: './edit-student.component.html'
 })
 export class EditStudentComponent implements OnInit {
-  id!: number;
-  loading = true;
-  submitting = false;
+  id!: string;        // keep as string; works for "3" or "ea34"
+  loading = true;     // show Loading… while fetching
+  submitting = false; // disable button on submit
 
   form = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
@@ -29,15 +29,12 @@ export class EditStudentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
-    if (!this.id) {
-      this.router.navigateByUrl('/students');
-      return;
-    }
+    const param = this.route.snapshot.paramMap.get('id');
+    if (!param) { this.router.navigateByUrl('/students'); return; }
+    this.id = param; // do NOT Number() here
 
     this.svc.get(this.id).subscribe({
       next: (s: Student) => {
-        // ensure date input gets yyyy-mm-dd
         const dob = s.dob?.slice(0, 10) || '';
         this.form.patchValue({ ...s, dob });
         this.loading = false;
@@ -52,9 +49,10 @@ export class EditStudentComponent implements OnInit {
   save(): void {
     if (this.form.invalid) { this.form.markAllAsTouched(); return; }
     this.submitting = true;
+
     this.svc.update(this.id, this.form.value as Partial<Student>).subscribe({
       next: () => this.router.navigateByUrl('/students'),
-      error: () => (this.submitting = false)
+      error: () => this.submitting = false
     });
   }
 

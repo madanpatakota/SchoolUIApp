@@ -6,24 +6,116 @@
     "feesDueThisMonth": 185000
   },
   "students": [
-    { "id": 1, "name": "Asha",  "classId": 1, "rollNo": "10A-01", "dob": "2012-04-15", "address": "Bangalore" },
-    { "id": 2, "name": "Ravi",  "classId": 2, "rollNo": "9B-14",  "dob": "2011-01-22", "address": "Bangalore" },
-    { "id": 3, "name": "Kiran", "classId": 1, "rollNo": "10A-02", "dob": "2012-08-01", "address": "Bangalore" }
+    {
+      "id": 1,
+      "name": "Asha",
+      "classId": 1,
+      "rollNo": "10A-01",
+      "dob": "2012-04-15",
+      "address": "Bangalore"
+    },
+    {
+      "id": 2,
+      "name": "Ravi",
+      "classId": 2,
+      "rollNo": "9B-14",
+      "dob": "2011-01-22",
+      "address": "Bangalore"
+    },
+    {
+      "id": 3,
+      "name": "Kiran",
+      "classId": 1,
+      "rollNo": "10A-02",
+      "dob": "2012-08-01",
+      "address": "Bangalore"
+    },
+    {
+      "id": 4,
+      "name": "john",
+      "rollNo": "4",
+      "classId": 1,
+      "dob": "2025-10-01",
+      "address": "Benaoglore"
+    }
   ],
   "notices": [
-    { "id": 1, "title": "Holiday on Friday", "body": "School closed for festival.", "date": "2025-10-10" },
-    { "id": 2, "title": "PTM Schedule", "body": "Parent-Teacher meeting next week.", "date": "2025-10-08" }
+    {
+      "id": 1,
+      "title": "Holiday on Friday",
+      "body": "School closed for festival.",
+      "date": "2025-10-10"
+    },
+    {
+      "id": 2,
+      "title": "PTM Schedule",
+      "body": "Parent-Teacher meeting next week.",
+      "date": "2025-10-08"
+    }
   ],
   "teachers": [
-    { "id": 1, "name": "Rajesh", "subject": "Maths",   "phone": "9811111111", "email": "rajesh@example.com", "joinDate": "2023-06-01" },
-    { "id": 2, "name": "Meera",  "subject": "Science", "phone": "9822222222", "email": "meera@example.com",  "joinDate": "2022-08-15" },
-    { "id": 3, "name": "Arun",   "subject": "English", "phone": "9833333333", "email": "arun@example.com",   "joinDate": "2021-04-10" }
+    {
+      "id": 1,
+      "name": "Rajesh",
+      "subject": "Maths",
+      "phone": "9811111111",
+      "email": "rajesh@example.com",
+      "joinDate": "2023-06-01"
+    },
+    {
+      "id": 2,
+      "name": "Meera",
+      "subject": "Science",
+      "phone": "9822222222",
+      "email": "meera@example.com",
+      "joinDate": "2022-08-15"
+    },
+    {
+      "id": 3,
+      "name": "Arun",
+      "subject": "English",
+      "phone": "9833333333",
+      "email": "arun@example.com",
+      "joinDate": "2021-04-10"
+    }
   ],
   "classes": [
-    { "id": 1, "name": "10-A", "section": "A", "room": "204", "capacity": 35, "teacherId": 1, "subject": "Maths" },
-    { "id": 2, "name": "9-B",  "section": "B", "room": "105", "capacity": 32, "teacherId": 2, "subject": "Science" },
-    { "id": 3, "name": "8-C",  "section": "C", "room": "307", "capacity": 30, "teacherId": 3, "subject": "English" },
-    { "id": 4, "name": "7-A",  "section": "A", "room": "109", "capacity": 28, "teacherId": 2, "subject": "History" }
+    {
+      "id": 1,
+      "name": "10-A",
+      "section": "A",
+      "room": "204",
+      "capacity": 35,
+      "teacherId": 1,
+      "subject": "Maths"
+    },
+    {
+      "id": 2,
+      "name": "9-B",
+      "section": "B",
+      "room": "105",
+      "capacity": 32,
+      "teacherId": 2,
+      "subject": "Science"
+    },
+    {
+      "id": 3,
+      "name": "8-C",
+      "section": "C",
+      "room": "307",
+      "capacity": 30,
+      "teacherId": 3,
+      "subject": "English"
+    },
+    {
+      "id": 4,
+      "name": "7-A",
+      "section": "A",
+      "room": "109",
+      "capacity": 28,
+      "teacherId": 2,
+      "subject": "History"
+    }
   ],
   "messages": []
 }
