@@ -1,0 +1,49 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    <h5 class="mb-0">Students</h5>
+    <div class="d-flex gap-2">
+      <input class="form-control form-control-sm" style="width:220px"
+             placeholder="Search name/roll/class..." [(ngModel)]="q">
+      <a class="btn btn-sm btn-primary" routerLink="/students/create">+ Add</a>
+    </div>
+  </div>
+
+  <ng-container *ngIf="!loading; else loadingTpl">
+    <ng-container *ngIf="filtered().length; else emptyTpl">
+      <div class="table-responsive">
+        <table class="table align-middle mb-0">
+          <thead>
+            <tr>
+              <th style="width:80px;">ID</th>
+              <th>Name</th>
+              <th>Roll</th>
+              <th>Class</th>
+              <th style="width:160px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let s of filtered()">
+              <td>{{ s.id }}</td>
+              <td>{{ s.name }}</td>
+              <td>{{ s.rollNo }}</td>
+              <td>{{ s.classId }}</td>
+              <td>
+                <div class="btn-group btn-group-sm">
+                  <a class="btn btn-outline-secondary" [routerLink]="['/students', s.id, 'edit']">Edit</a>
+                  <button class="btn btn-outline-danger" (click)="delete(s.id)">Delete</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-container>
+    <ng-template #emptyTpl>
+      <div class="p-4 text-center text-muted">No students yet.</div>
+    </ng-template>
+  </ng-container>
+
+  <ng-template #loadingTpl>
+    <div class="p-4 text-center">Loading…</div>
+  </ng-template>
+</div>

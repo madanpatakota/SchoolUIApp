@@ -1,0 +1,6 @@
+.metric-card {
+  border-left: 4px solid rgba(13, 110, 253, .65);
+}
+.metric-title { font-size: .9rem; color: #6c757d; }
+.metric-value { font-size: 1.75rem; font-weight: 700; line-height: 1.1; }
+.metric-sub   { font-size: .85rem; color: #6c757d; }

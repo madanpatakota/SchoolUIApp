@@ -1,0 +1,133 @@
+<ng-container *ngIf="!loading; else loadingTpl">
+
+  <!-- Page Header -->
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h3 class="mb-0">Dashboard</h3>
+    <div class="btn-group">
+      <a routerLink="/students/create" class="btn btn-primary">+ Add Student</a>
+      <a routerLink="/teachers" class="btn btn-outline-primary">Teachers</a>
+      <a routerLink="/classes" class="btn btn-outline-primary">Classes</a>
+    </div>
+  </div>
+
+  <!-- Metric Cards -->
+  <div class="row g-3 mb-3">
+    <div class="col-md-3">
+      <div class="card metric-card">
+        <div class="card-body">
+          <div class="metric-title">Students</div>
+          <div class="metric-value">{{ summary.totalStudents }}</div>
+          <div class="metric-sub">Total enrolled</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card metric-card">
+        <div class="card-body">
+          <div class="metric-title">Teachers</div>
+          <div class="metric-value">{{ summary.totalTeachers }}</div>
+          <div class="metric-sub">Active faculty</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card metric-card">
+        <div class="card-body">
+          <div class="metric-title">Classes</div>
+          <div class="metric-value">{{ summary.totalClasses }}</div>
+          <div class="metric-sub">Sections running</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card metric-card">
+        <div class="card-body">
+          <div class="metric-title">Fees Due</div>
+          <div class="metric-value">₹ {{ summary.feesDueThisMonth | number }}</div>
+          <div class="metric-sub">This month</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Two-column content -->
+  <div class="row g-3">
+    <!-- Recent Students -->
+    <div class="col-lg-8">
+      <div class="card h-100">
+        <div class="card-header d-flex align-items-center justify-content-between">
+          <h5 class="mb-0">Recent Students</h5>
+          <a routerLink="/students" class="btn btn-sm btn-outline-secondary">View all</a>
+        </div>
+
+        <ng-container *ngIf="recentStudents.length; else emptyStudentsTpl">
+          <div class="table-responsive">
+            <table class="table align-middle mb-0">
+              <thead>
+                <tr>
+                  <th style="width: 80px;">ID</th>
+                  <th>Name</th>
+                  <th>Roll</th>
+                  <th style="width: 140px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let s of recentStudents">
+                  <td>{{ s.id }}</td>
+                  <td>{{ s.name }}</td>
+                  <td>{{ s.rollNo }}</td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <a class="btn btn-outline-secondary" [routerLink]="['/students', s.id, 'edit']">Edit</a>
+                      <a class="btn btn-outline-primary" [routerLink]="['/students']">Open</a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-container>
+
+        <ng-template #emptyStudentsTpl>
+          <div class="p-4 text-center text-muted">No recent students found.</div>
+        </ng-template>
+      </div>
+    </div>
+
+    <!-- Notices -->
+    <div class="col-lg-4">
+      <div class="card h-100">
+        <div class="card-header">
+          <h5 class="mb-0">Notices</h5>
+        </div>
+
+        <ng-container *ngIf="notices.length; else emptyNoticesTpl">
+          <ul class="list-group list-group-flush">
+            <li *ngFor="let n of notices" class="list-group-item">
+              <div class="fw-semibold">{{ n.title }}</div>
+              <div class="small text-muted">{{ n.date | date:'MMM d, y' }}</div>
+              <div class="text-secondary mt-1">{{ n.body }}</div>
+            </li>
+          </ul>
+        </ng-container>
+
+        <ng-template #emptyNoticesTpl>
+          <div class="p-4 text-center text-muted">No notices yet.</div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="errorMsg" class="alert alert-danger mt-3">
+    {{ errorMsg }}
+  </div>
+
+</ng-container>
+
+<!-- Loading -->
+<ng-template #loadingTpl>
+  <div class="card p-5 text-center">
+    Loading dashboard…
+  </div>
+</ng-template>

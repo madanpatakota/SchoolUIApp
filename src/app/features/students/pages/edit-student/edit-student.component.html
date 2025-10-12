@@ -1,0 +1,60 @@
+<ng-container *ngIf="!loading; else loadingTpl">
+  <div class="card">
+    <div class="card-header d-flex align-items-center justify-content-between">
+      <h5 class="mb-0">Edit Student #{{ id }}</h5>
+      <a class="btn btn-sm btn-outline-secondary" routerLink="/students">Back</a>
+    </div>
+
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="save()" novalidate>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Name</label>
+            <input class="form-control" formControlName="name" />
+            <div class="text-danger small" *ngIf="f.name.touched && f.name.invalid">
+              Name is required (min 2 chars).
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">Roll No</label>
+            <input class="form-control" formControlName="rollNo" />
+            <div class="text-danger small" *ngIf="f.rollNo.touched && f.rollNo.invalid">
+              Roll number is required.
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">Class</label>
+            <input type="number" class="form-control" formControlName="classId" />
+            <div class="text-danger small" *ngIf="f.classId.touched && f.classId.invalid">
+              Class is required.
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" formControlName="dob" />
+            <div class="text-danger small" *ngIf="f.dob.touched && f.dob.invalid">
+              DOB is required.
+            </div>
+          </div>
+
+          <div class="col-md-8">
+            <label class="form-label">Address</label>
+            <input class="form-control" formControlName="address" />
+          </div>
+        </div>
+
+        <div class="mt-3 d-flex gap-2">
+          <button class="btn btn-primary" [disabled]="submitting || form.invalid">Update</button>
+          <a class="btn btn-outline-secondary" routerLink="/students">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #loadingTpl>
+  <div class="card p-4 text-center">Loading…</div>
+</ng-template>
