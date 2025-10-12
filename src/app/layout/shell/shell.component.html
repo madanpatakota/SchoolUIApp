@@ -2,12 +2,12 @@
   <a class="brand" routerLink="/">SchoolAppUI</a>
 
   <ul class="menu">
-  <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
-  <li *ngIf="isLoggedIn"><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
-  <li *ngIf="isLoggedIn"><a routerLink="/students" routerLinkActive="active">Students</a></li>
-  <li *ngIf="isLoggedIn"><a routerLink="/teachers" routerLinkActive="active">Teachers</a></li>
+  <li><a routerLink="/home" appHighlight="#f1f3f5" routerLinkActive="active">Home</a></li>
+  <li *ngIf="isLoggedIn"><a routerLink="/dashboard" appHighlight="#f1f3f5" routerLinkActive="active">Dashboard</a></li>
+  <li *ngIf="isLoggedIn"><a routerLink="/students"  appHighlight="#f1f3f5" routerLinkActive="active">Students</a></li>
+  <li *ngIf="isLoggedIn"><a routerLink="/teachers" appHighlight="#f1f3f5" routerLinkActive="active">Teachers</a></li>
   <li *ngIf="isLoggedIn"><a routerLink="/classes" routerLinkActive="active">Classes</a></li>
-  <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+  <!-- <li><a routerLink="/about" routerLinkActive="active">About</a></li> -->
   <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
   <li *ngIf="!isLoggedIn"><a routerLink="/auth/login">Login</a></li>
   <li *ngIf="isLoggedIn"><a (click)="logout()">Logout</a></li>

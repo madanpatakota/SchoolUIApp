@@ -9,6 +9,7 @@ import { ListTeachersComponent } from './pages/list-teachers/list-teachers.compo
 import { CreateTeacherComponent } from './pages/create-teacher/create-teacher.component';
 import { EditTeacherComponent } from './pages/edit-teacher/edit-teacher.component';
 import { TeachersService } from './services/teachers.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TeachersService } from './services/teachers.service';
     FormsModule,          // for [(ngModel)] in list page search box
     ReactiveFormsModule,  // for create/edit reactive forms
     RouterModule,
-    TeachersRoutingModule
+    TeachersRoutingModule,
+    SharedModule
   ],
   providers: [TeachersService]
 })

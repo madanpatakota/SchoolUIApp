@@ -26,9 +26,15 @@
           <tbody>
             <tr *ngFor="let t of filtered()">
               <td>{{ t.id }}</td>
-              <td>{{ t.name }}</td>
+              <td>
+  <div class="rounded-circle bg-light border me-2 d-inline-flex align-items-center justify-content-center"
+       style="width:28px;height:28px;">
+    <span class="small">{{ t.name | initials }}</span>
+  </div>
+  {{ t.name }}
+</td>
               <td><span class="badge text-bg-light">{{ t.subject }}</span></td>
-              <td>{{ t.phone }}</td>
+              <td>{{ t.phone | phone}}</td>
               <td>{{ t.email || '—' }}</td>
               <td>
                 <div class="btn-group btn-group-sm">

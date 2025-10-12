@@ -10,7 +10,7 @@
 
   <ng-container *ngIf="!loading; else loadingTpl">
     <ng-container *ngIf="filtered().length; else emptyTpl">
-      <div class="table-responsive">
+      <div class="table-responsive" >
         <table class="table align-middle mb-0">
           <thead>
             <tr>
@@ -22,7 +22,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let s of filtered()">
+            <tr *ngFor="let s of filtered()" appHighlight>
               <td>{{ s.id }}</td>
               <td>{{ s.name }}</td>
               <td>{{ s.rollNo }}</td>
